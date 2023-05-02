@@ -462,19 +462,6 @@ void OLED_DEACTIVATE_scroll()
 	OLED_send_cmd(OLED_DEACTIVATE_SCROLL);
 }
 
-
-Bool OLED_DrawPixel(uint8_t col_pos, uint8_t row_pos)
-{
-  Bool E_stat=E_OK;
-  if ((col_pos >= OLED_COL_SIZE) || (row_pos >= 64))
-	  E_stat=E_NOK;
-  else
-  {
-	  //OLED_buffer[col_pos + (uint16_t)(row_pos / 8) * 64] |=  (1 << (row_pos & 7));
-  }
-  return E_stat;
-}
-
 void OLED_Display(void)
 {
 	uint16 Buff_Counter = 0;
