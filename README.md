@@ -1,7 +1,6 @@
 # AVR-OledSSD-1306Driver-Screen
 OLED ssd1306 Driver
 ## Description
-IR Remote controller decoded using tsopv1738 Ir sensor thanks to Antor Ahmed for providing me with remote controller in proteus  
 A bunch of Simple to use Software Interfaces are available to choose from
 
 Bool OLED_Init();  
