@@ -1,0 +1,624 @@
+Archive member included because of file (symbol)
+
+h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
+                              ./RTCDS1307.o (__udivmodqi4)
+h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                              ./I2C.o (__udivmodsi4)
+h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                              h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o (exit)
+h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                              ./Gpiodriver.o (__do_copy_data)
+h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                              ./Interrupts.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+X_Cursor            0x1               ./OLEDDisplay.o
+Y_Cursor            0x1               ./OLEDDisplay.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+LOAD ./Gpiodriver.o
+LOAD ./I2C.o
+LOAD ./Internal_Interrupts.o
+LOAD ./Interrupts.o
+LOAD ./OLEDDisplay.o
+LOAD ./RTCDS1307.o
+LOAD ./main.o
+LOAD h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+LOAD h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a
+LOAD h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x18ca
+ *(.vectors)
+ .vectors       0x00000000       0x54 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+ .progmem.data  0x00000054      0x5f0 ./OLEDDisplay.o
+                0x00000054                ssd1306xled_font8x16
+                0x00000644                . = ALIGN (0x2)
+                0x00000644                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000644        0x0 linker stubs
+ *(.trampolines*)
+                0x00000644                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000644                __ctors_start = .
+ *(.ctors)
+                0x00000644                __ctors_end = .
+                0x00000644                __dtors_start = .
+ *(.dtors)
+                0x00000644                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000644        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000644                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000644        0xc h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000650       0x16 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                0x00000650                __do_copy_data
+ .init4         0x00000666       0x10 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000666                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000676        0x8 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init9)
+ *(.text)
+ .text          0x0000067e        0x4 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x0000067e                __vector_12
+                0x0000067e                __bad_interrupt
+                0x0000067e                __vector_6
+                0x0000067e                __vector_11
+                0x0000067e                __vector_13
+                0x0000067e                __vector_17
+                0x0000067e                __vector_19
+                0x0000067e                __vector_7
+                0x0000067e                __vector_5
+                0x0000067e                __vector_4
+                0x0000067e                __vector_9
+                0x0000067e                __vector_15
+                0x0000067e                __vector_8
+                0x0000067e                __vector_14
+                0x0000067e                __vector_10
+                0x0000067e                __vector_16
+                0x0000067e                __vector_18
+                0x0000067e                __vector_20
+ .text          0x00000682        0x0 ./Gpiodriver.o
+ .text          0x00000682        0x0 ./I2C.o
+ .text          0x00000682        0x0 ./Internal_Interrupts.o
+ .text          0x00000682        0x0 ./Interrupts.o
+ .text          0x00000682        0x0 ./OLEDDisplay.o
+ .text          0x00000682        0x0 ./RTCDS1307.o
+ .text          0x00000682        0x0 ./main.o
+ .text          0x00000682        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
+ .text          0x00000682        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .text          0x00000682        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x00000682        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000682        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000682                . = ALIGN (0x2)
+ *(.text.*)
+ .text.GPIO_PIN_CONFIG
+                0x00000682      0x10c ./Gpiodriver.o
+                0x00000682                GPIO_PIN_CONFIG
+ .text.GPIO_PIN_READ
+                0x0000078e       0x3e ./Gpiodriver.o
+                0x0000078e                GPIO_PIN_READ
+ .text.GPIO_PIN_WRITE
+                0x000007cc       0x78 ./Gpiodriver.o
+                0x000007cc                GPIO_PIN_WRITE
+ .text.GPIO_PIN_Toggle
+                0x00000844       0x3e ./Gpiodriver.o
+                0x00000844                GPIO_PIN_Toggle
+ .text.GPIO_PORT_CONFIG
+                0x00000882       0x20 ./Gpiodriver.o
+                0x00000882                GPIO_PORT_CONFIG
+ .text.GPIO_PORT_WRITE
+                0x000008a2       0x20 ./Gpiodriver.o
+                0x000008a2                GPIO_PORT_WRITE
+ .text.GPIO_PORT_READ
+                0x000008c2       0x2a ./Gpiodriver.o
+                0x000008c2                GPIO_PORT_READ
+ .text.GPIO_PORT_Toggle
+                0x000008ec       0x24 ./Gpiodriver.o
+                0x000008ec                GPIO_PORT_Toggle
+ .text.I2C_WRITE_BYTE
+                0x00000910        0xe ./I2C.o
+                0x00000910                I2C_WRITE_BYTE
+ .text.I2C_INIT
+                0x0000091e       0xa4 ./I2C.o
+                0x0000091e                I2C_INIT
+ .text.I2C_Write_BYTE
+                0x000009c2       0x62 ./I2C.o
+                0x000009c2                I2C_Write_BYTE
+ .text.I2C_Write_NBYTE_
+                0x00000a24       0x68 ./I2C.o
+                0x00000a24                I2C_Write_NBYTE_
+ .text.I2C_WRITE_NBYTES
+                0x00000a8c       0x7a ./I2C.o
+                0x00000a8c                I2C_WRITE_NBYTES
+ .text.I2C_READ_BYTE
+                0x00000b06       0x80 ./I2C.o
+                0x00000b06                I2C_READ_BYTE
+ .text.I2C_READ_NBYTES
+                0x00000b86       0xb2 ./I2C.o
+                0x00000b86                I2C_READ_NBYTES
+ .text.EXT_Int_init
+                0x00000c38      0x11c ./Interrupts.o
+                0x00000c38                EXT_Int_init
+ .text.INT0_ISR_
+                0x00000d54       0x16 ./Interrupts.o
+                0x00000d54                INT0_ISR_
+ .text.INT1_ISR_
+                0x00000d6a       0x16 ./Interrupts.o
+                0x00000d6a                INT1_ISR_
+ .text.INT2_ISR_
+                0x00000d80       0x16 ./Interrupts.o
+                0x00000d80                INT2_ISR_
+ .text.__vector_1
+                0x00000d96       0x48 ./Interrupts.o
+                0x00000d96                __vector_1
+ .text.__vector_2
+                0x00000dde       0x48 ./Interrupts.o
+                0x00000dde                __vector_2
+ .text.__vector_3
+                0x00000e26       0x48 ./Interrupts.o
+                0x00000e26                __vector_3
+ .text.OLED_DrawPixel
+                0x00000e6e       0x18 ./OLEDDisplay.o
+                0x00000e6e                OLED_DrawPixel
+ .text.OLED_send_cmd
+                0x00000e86       0x30 ./OLEDDisplay.o
+ .text.OLED_DEACTIVATE_scroll
+                0x00000eb6        0x8 ./OLEDDisplay.o
+                0x00000eb6                OLED_DEACTIVATE_scroll
+ .text.OLDE_ScrollLeft
+                0x00000ebe       0x3e ./OLEDDisplay.o
+                0x00000ebe                OLDE_ScrollLeft
+ .text.OLDE_ScrollRight
+                0x00000efc       0x3e ./OLEDDisplay.o
+                0x00000efc                OLDE_ScrollRight
+ .text.OLED_SET_CURSOR
+                0x00000f3a       0x48 ./OLEDDisplay.o
+                0x00000f3a                OLED_SET_CURSOR
+ .text.OLED_Display
+                0x00000f82       0x64 ./OLEDDisplay.o
+                0x00000f82                OLED_Display
+ .text.OLED_DISPLAY_String_Font_2
+                0x00000fe6      0x11c ./OLEDDisplay.o
+                0x00000fe6                OLED_DISPLAY_String_Font_2
+ .text.OLED_DISPLAY_CHAR
+                0x00001102       0xa8 ./OLEDDisplay.o
+                0x00001102                OLED_DISPLAY_CHAR
+ .text.OLED_DISPLAY_String_font_1
+                0x000011aa       0x34 ./OLEDDisplay.o
+                0x000011aa                OLED_DISPLAY_String_font_1
+ .text.OLED_DISPLAY_String
+                0x000011de       0x2e ./OLEDDisplay.o
+                0x000011de                OLED_DISPLAY_String
+ .text.OLED_Init
+                0x0000120c      0x16a ./OLEDDisplay.o
+                0x0000120c                OLED_Init
+ .text.RTCDS1307_DATE_STR
+                0x00001376      0x19a ./RTCDS1307.o
+                0x00001376                RTCDS1307_DATE_STR
+ .text.RTCDS1307_TIME_STR
+                0x00001510       0xea ./RTCDS1307.o
+                0x00001510                RTCDS1307_TIME_STR
+ .text.RTCDS1307_GET_DATE
+                0x000015fa       0x58 ./RTCDS1307.o
+                0x000015fa                RTCDS1307_GET_DATE
+ .text.RTCDS1307_GET_TIME
+                0x00001652       0x4c ./RTCDS1307.o
+                0x00001652                RTCDS1307_GET_TIME
+ .text.RTCDS1307_SET_DATE
+                0x0000169e       0x8e ./RTCDS1307.o
+                0x0000169e                RTCDS1307_SET_DATE
+ .text.RTCDS1307_SET_TIME
+                0x0000172c       0xb6 ./RTCDS1307.o
+                0x0000172c                RTCDS1307_SET_TIME
+ .text.main     0x000017e2       0x88 ./main.o
+                0x000017e2                main
+ .text.libgcc   0x0000186a       0x18 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
+                0x0000186a                __udivmodqi4
+ .text.libgcc   0x00001882       0x44 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00001882                __udivmodsi4
+ .text.libgcc   0x000018c6        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000018c6        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000018c6        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x000018c6                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x000018c6        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000018c6                exit
+                0x000018c6                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x000018c6        0x4 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x000018ca                _etext = .
+
+.data           0x00800060      0x224 load address 0x000018ca
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .data          0x00800060        0x0 ./Gpiodriver.o
+ .data          0x00800060        0x0 ./I2C.o
+ .data          0x00800060        0x0 ./Internal_Interrupts.o
+ .data          0x00800060        0x0 ./Interrupts.o
+ .data          0x00800060        0x0 ./OLEDDisplay.o
+ .data          0x00800060       0x24 ./RTCDS1307.o
+ .data          0x00800084        0xd ./main.o
+ .data          0x00800091        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
+ .data          0x00800091        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .data          0x00800091        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .data          0x00800091        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .data          0x00800091        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ *(.data*)
+ .data.PORTX_REGS
+                0x00800091        0x8 ./Gpiodriver.o
+                0x00800091                PORTX_REGS
+ .data.DDRX_REGS
+                0x00800099        0x8 ./Gpiodriver.o
+                0x00800099                DDRX_REGS
+ .data.PINX_REGS
+                0x008000a1        0x8 ./Gpiodriver.o
+                0x008000a1                PINX_REGS
+ *(.rodata)
+ *(.rodata*)
+ .rodata.OledFontTable
+                0x008000a9      0x1db ./OLEDDisplay.o
+                0x008000a9                OledFontTable
+ *(.gnu.linkonce.d*)
+                0x00800284                . = ALIGN (0x2)
+                0x00800284                _edata = .
+                0x00800284                PROVIDE (__data_end, .)
+
+.bss            0x00800284        0x8
+                0x00800284                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800284        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .bss           0x00800284        0x0 ./Gpiodriver.o
+ .bss           0x00800284        0x0 ./I2C.o
+ .bss           0x00800284        0x0 ./Internal_Interrupts.o
+ .bss           0x00800284        0x0 ./Interrupts.o
+ .bss           0x00800284        0x0 ./OLEDDisplay.o
+ .bss           0x00800284        0x0 ./RTCDS1307.o
+ .bss           0x00800284        0x0 ./main.o
+ .bss           0x00800284        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
+ .bss           0x00800284        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .bss           0x00800284        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .bss           0x00800284        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .bss           0x00800284        0x0 h:/avr/tools/eclipse/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ *(.bss*)
+ .bss.INT0_Callback_Ptr
+                0x00800284        0x2 ./Interrupts.o
+ .bss.INT1_Callback_Ptr
+                0x00800286        0x2 ./Interrupts.o
+ .bss.INT2_Callback_Ptr
+                0x00800288        0x2 ./Interrupts.o
+ *(COMMON)
+ COMMON         0x0080028a        0x2 ./OLEDDisplay.o
+                0x0080028a                X_Cursor
+                0x0080028b                Y_Cursor
+                0x0080028c                PROVIDE (__bss_end, .)
+                0x000018ca                __data_load_start = LOADADDR (.data)
+                0x00001aee                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x0080028c        0x0
+                0x0080028c                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x0080028c                PROVIDE (__noinit_end, .)
+                0x0080028c                _end = .
+                0x0080028c                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x1d8
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x58 ./Gpiodriver.o
+ .debug_aranges
+                0x00000058       0x50 ./I2C.o
+ .debug_aranges
+                0x000000a8       0x50 ./Interrupts.o
+ .debug_aranges
+                0x000000f8       0x78 ./OLEDDisplay.o
+ .debug_aranges
+                0x00000170       0x48 ./RTCDS1307.o
+ .debug_aranges
+                0x000001b8       0x20 ./main.o
+
+.debug_pubnames
+                0x00000000      0x3ee
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0xdb ./Gpiodriver.o
+ .debug_pubnames
+                0x000000db       0x95 ./I2C.o
+ .debug_pubnames
+                0x00000170       0x7a ./Interrupts.o
+ .debug_pubnames
+                0x000001ea      0x14d ./OLEDDisplay.o
+ .debug_pubnames
+                0x00000337       0x9c ./RTCDS1307.o
+ .debug_pubnames
+                0x000003d3       0x1b ./main.o
+
+.debug_info     0x00000000     0x189c
+ *(.debug_info)
+ .debug_info    0x00000000      0x406 ./Gpiodriver.o
+ .debug_info    0x00000406      0x532 ./I2C.o
+ .debug_info    0x00000938       0x7e ./Internal_Interrupts.o
+ .debug_info    0x000009b6      0x339 ./Interrupts.o
+ .debug_info    0x00000cef      0x665 ./OLEDDisplay.o
+ .debug_info    0x00001354      0x450 ./RTCDS1307.o
+ .debug_info    0x000017a4       0xf8 ./main.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x922
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x141 ./Gpiodriver.o
+ .debug_abbrev  0x00000141      0x204 ./I2C.o
+ .debug_abbrev  0x00000345       0x2c ./Internal_Interrupts.o
+ .debug_abbrev  0x00000371      0x17a ./Interrupts.o
+ .debug_abbrev  0x000004eb      0x25c ./OLEDDisplay.o
+ .debug_abbrev  0x00000747      0x152 ./RTCDS1307.o
+ .debug_abbrev  0x00000899       0x89 ./main.o
+
+.debug_line     0x00000000     0x2399
+ *(.debug_line)
+ .debug_line    0x00000000      0x3bd ./Gpiodriver.o
+ .debug_line    0x000003bd      0x716 ./I2C.o
+ .debug_line    0x00000ad3      0x243 ./Internal_Interrupts.o
+ .debug_line    0x00000d16      0x462 ./Interrupts.o
+ .debug_line    0x00001178      0x908 ./OLEDDisplay.o
+ .debug_line    0x00001a80      0x5cd ./RTCDS1307.o
+ .debug_line    0x0000204d      0x34c ./main.o
+
+.debug_frame    0x00000000      0x2f0
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x90 ./Gpiodriver.o
+ .debug_frame   0x00000090       0x80 ./I2C.o
+ .debug_frame   0x00000110       0x80 ./Interrupts.o
+ .debug_frame   0x00000190       0xd0 ./OLEDDisplay.o
+ .debug_frame   0x00000260       0x70 ./RTCDS1307.o
+ .debug_frame   0x000002d0       0x20 ./main.o
+
+.debug_str      0x00000000      0x7c4
+ *(.debug_str)
+ .debug_str     0x00000000      0x1fd ./Gpiodriver.o
+                                0x242 (size before relaxing)
+ .debug_str     0x000001fd       0xd1 ./I2C.o
+                                0x1af (size before relaxing)
+ .debug_str     0x000002ce       0x19 ./Internal_Interrupts.o
+                                 0xd9 (size before relaxing)
+ .debug_str     0x000002e7      0x1cd ./Interrupts.o
+                                0x292 (size before relaxing)
+ .debug_str     0x000004b4      0x21c ./OLEDDisplay.o
+                                0x321 (size before relaxing)
+ .debug_str     0x000006d0       0xe5 ./RTCDS1307.o
+                                0x1d0 (size before relaxing)
+ .debug_str     0x000007b5        0xf ./main.o
+                                 0xfa (size before relaxing)
+
+.debug_loc      0x00000000      0xd9e
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x323 ./Gpiodriver.o
+ .debug_loc     0x00000323      0x337 ./I2C.o
+ .debug_loc     0x0000065a       0x46 ./Interrupts.o
+ .debug_loc     0x000006a0      0x408 ./OLEDDisplay.o
+ .debug_loc     0x00000aa8      0x2f6 ./RTCDS1307.o
+
+.debug_macinfo  0x00000000    0x241b6
+ *(.debug_macinfo)
+ .debug_macinfo
+                0x00000000     0x46c4 ./Gpiodriver.o
+ .debug_macinfo
+                0x000046c4     0x4b1a ./I2C.o
+ .debug_macinfo
+                0x000091de     0x4b4e ./Internal_Interrupts.o
+ .debug_macinfo
+                0x0000dd2c     0x4b4e ./Interrupts.o
+ .debug_macinfo
+                0x0001287a     0x5d6e ./OLEDDisplay.o
+ .debug_macinfo
+                0x000185e8     0x51e3 ./RTCDS1307.o
+ .debug_macinfo
+                0x0001d7cb     0x69eb ./main.o
+OUTPUT(AvrOledDisp.elf elf32-avr)
+LOAD linker stubs
+
+.debug_ranges   0x00000000      0x1d8
+ .debug_ranges  0x00000000       0x50 ./Gpiodriver.o
+ .debug_ranges  0x00000050       0x78 ./I2C.o
+ .debug_ranges  0x000000c8       0x48 ./Interrupts.o
+ .debug_ranges  0x00000110       0x70 ./OLEDDisplay.o
+ .debug_ranges  0x00000180       0x40 ./RTCDS1307.o
+ .debug_ranges  0x000001c0       0x18 ./main.o
