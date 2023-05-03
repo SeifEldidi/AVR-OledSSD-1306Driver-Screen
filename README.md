@@ -3,11 +3,7 @@ OLED ssd1306 Driver
 ## Description
 A bunch of Simple to use Software Interfaces are available to choose from
 
-/**************  
-* parameters: void  
-* description: Display initilization Function  
-**************/  
-Bool OLED_Init();  
+Bool OLED_Init(); 
 Bool OLED_DISPLAY_CHAR(char C);  
 Bool OLED_DISPLAY_String_font_1(char *str);  
 Bool OLED_SET_CURSOR(uint8 X,uint8 Y);  
