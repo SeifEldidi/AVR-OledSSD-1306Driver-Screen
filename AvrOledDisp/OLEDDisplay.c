@@ -462,33 +462,3 @@ void OLED_DEACTIVATE_scroll()
 	OLED_send_cmd(OLED_DEACTIVATE_SCROLL);
 }
 
-void OLED_Display(void)
-{
-	uint16 Buff_Counter = 0;
-	uint8 Int_Cnt=0;
-	OLED_send_cmd(OLED_SET_COLUMN_ADDR);
-	OLED_send_cmd(0);
-	OLED_send_cmd(OLED_COL_SIZE - 1);
-
-	OLED_send_cmd(OLED_SET_PAGE_ADDR);
-	OLED_send_cmd(0);
-	OLED_send_cmd(OLED_PAGE_SIZE);
-
-	for (Buff_Counter = 0;	Buff_Counter < 1024;
-			Buff_Counter++)
-	{
-		// send a bunch of data in one xmission
-		I2C_GEN_START_COND();
-		I2C_WAIT();
-		I2C_WRITE_BYTE(OLEDSSD_DISPLAY_ADD);
-		I2C_WRITE_BYTE(0x40);
-		for (Int_Cnt = 0; Int_Cnt < 16; Int_Cnt++) {
-			//I2C_WRITE_BYTE(OLED_buffer[Buff_Counter]);
-			Buff_Counter++;
-		}
-		Buff_Counter--;
-		I2C_GEN_STOP_COND();
-		I2C_WAIT_STOP();
-    }
-}
-
