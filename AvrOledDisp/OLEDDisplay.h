@@ -64,9 +64,7 @@ Bool OLED_SET_CURSOR(uint8 X,uint8 Y);
 void OLDE_ScrollRight(uint8_t Pag_start, uint8_t Pag_End);
 void OLDE_ScrollLeft(uint8_t Pag_start, uint8_t Pag_End);
 void OLED_DEACTIVATE_scroll();
-Bool OLED_DrawPixel(uint8_t col_pos, uint8_t row_pos);
 Bool OLED_DISPLAY_String_Font_2(char *str,uint8 X,uint8 Y);
 Bool OLED_DISPLAY_String(char *str,uint8 X,uint8 Y,uint8 Font);
-void OLED_Display(void);
 
 #endif /* OLEDDISPLAY_H_ */
