@@ -2,7 +2,7 @@
  * OLEDDisplay.c
  *
  *  Created on: May 2, 2023
- *      Author: Seif pc
+ *      Author: Seif Eldidi 
  */
 #include "OLEDDisplay.h"
 
@@ -10,7 +10,7 @@ uint8 X_Cursor;
 uint8 Y_Cursor;
 
 #define FONT_SIZE 5
-const unsigned char OledFontTable[][FONT_SIZE]={
+const unsigned char PROGMEM OledFontTable[][FONT_SIZE]={
     0x00, 0x00, 0x00, 0x00, 0x00,   // space
     0x00, 0x00, 0x2f, 0x00, 0x00,   // !
     0x00, 0x07, 0x00, 0x07, 0x00,   // "
@@ -213,6 +213,8 @@ const PROGMEM uint8_t ssd1306xled_font8x16[] = {
      0x00, 0x06, 0x01, 0x01, 0x02, 0x02, 0x04, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // ~ 94
  };
 
+uint8_t Image[1024];
+
 static Bool OLED_send_cmd(uint8 Cmd)
 {
 	Bool E_Stat=E_OK;
@@ -248,7 +250,7 @@ Bool OLED_Init()
 	E_Stat=I2C_INIT(&I2C);
 	DDRC |= (1 << PC2);
 	PORTC &= ~(1 << PC2);
-	_delay_ms(100);
+	_delay_ms(10);
 	PORTC |= (1 << PC2);
 	E_Stat=OLED_send_cmd(OLED_DISPLAY_OFF_SLEEP);
 	E_Stat=OLED_send_cmd(OLED_SET_DISPLAY_CLK_DIVIDE);
@@ -343,7 +345,7 @@ Bool OLED_DISPLAY_CHAR(char C)
 		I2C_WRITE_BYTE(0x40);
 		for(Char_Cnt=0;Char_Cnt<5;Char_Cnt++)
 		{
-			I2C_WRITE_BYTE(OledFontTable[Char_position][Char_Cnt]);
+			I2C_WRITE_BYTE(pgm_read_byte(&OledFontTable[Char_position][Char_Cnt]));
 			X_Cursor++;
 		}
 		I2C_GEN_STOP_COND();
@@ -352,7 +354,7 @@ Bool OLED_DISPLAY_CHAR(char C)
 	return E_stat;
 }
 
-Bool OLED_DISPLAY_String_Font_2(char *str,uint8 X,uint8 Y)
+static Bool OLED_DISPLAY_String_Font_2(char *str,uint8 X,uint8 Y)
 {
 	Bool E_stat = E_OK;
 	uint8 Char_Cnt = 0;
@@ -399,7 +401,7 @@ Bool OLED_DISPLAY_String_Font_2(char *str,uint8 X,uint8 Y)
 	return E_stat;
 }
 
-Bool OLED_DISPLAY_String_font_1(char *str)
+static Bool OLED_DISPLAY_String_font_1(char *str)
 {
 	Bool E_stat=E_OK;
 	if(NULL==str)
@@ -460,5 +462,258 @@ void OLDE_ScrollLeft(uint8_t Pag_start, uint8_t Pag_End)
 void OLED_DEACTIVATE_scroll()
 {
 	OLED_send_cmd(OLED_DEACTIVATE_SCROLL);
+}
+
+static uint8 Num_length(int32 Num)
+{
+	uint8 Length=0;
+	while(Num>0)
+	{
+		Length++;
+		Num/=10;
+	}
+	return Length;
+}
+
+static void Memset(uint8 *str,uint8 Len)
+{
+	uint8 Cnt=0;
+	while(Cnt<Len)
+	{
+		*(str+Cnt)='\0';
+		Cnt++;
+	}
+}
+
+Bool OLED_display_Integer(int32 Num,uint8 Col_C,uint8 Row_C,uint8 Font)
+{
+	Bool E_stat=E_OK;
+	Bool Neg_flag=0;
+	uint8 length=0;
+	uint8 Str_Arr[30];
+	uint8 Cnt=0;
+	Memset(Str_Arr,30);
+	if(Num<0)
+	{
+		Num*=-1;
+		Neg_flag=1;
+	}
+	if(Row_C>OLED_PAGE_SIZE||Col_C>OLED_COL_SIZE-1)
+		E_stat=E_NOK;
+	else
+	{
+		OLED_SET_CURSOR(Col_C,Row_C);
+		length=Num_length(Num);
+		if(Neg_flag==1)
+			Str_Arr[0]='-';
+		else{}
+		for(Cnt=0;Cnt<length;Cnt++)
+		{
+			if(Neg_flag==0)
+				Str_Arr[length-Cnt-1]=Num%10+zero;
+			else
+				Str_Arr[length-Cnt]=Num%10+zero;
+			Num/=10;
+		}
+		OLED_DISPLAY_String(Str_Arr,Col_C,Row_C,Font);
+	}
+	return E_stat;
+}
+
+Bool OLED_display_Float(float32 Num,uint8 Col_C,uint8 Row_C,uint8 Font)
+{
+	Bool E_stat = E_OK;
+	Bool Neg_flag = 0;
+	uint8 i_length = 0;
+	uint8 f_length = 0;
+	uint8 Length=0;
+	uint8 Str_Arr[30];
+	uint8 Cnt = 0;
+	int32 Int_part=0;
+	int32 Fract_part=0;
+	int8 Fract;
+	Memset(Str_Arr, 30);
+	if(Num<0)
+	{
+		Num *= -1;
+		Neg_flag = 1;
+	}
+	if(Row_C>OLED_PAGE_SIZE||Col_C>OLED_COL_SIZE-1)
+			E_stat=E_NOK;
+	else
+	{
+		Int_part=(int32)Num;
+		Fract_part=(Num-Int_part)*1000000;
+		i_length=Num_length(Int_part);
+		f_length=Num_length(Fract_part);
+		Length=i_length+f_length+1;
+		OLED_SET_CURSOR(Col_C,Row_C);
+		if (Neg_flag == 1)
+			Str_Arr[0] = '-';
+		else {
+		}
+		for (Cnt = 0; Cnt < f_length; Cnt++) {
+			Fract=Fract_part%10;
+			if (Neg_flag == 0)
+			{
+				if(Fract!=0)
+					Str_Arr[Length - Cnt - 1] = Fract+ zero;
+				else
+					Str_Arr[Length - Cnt] = '\0';
+			}
+			else
+			{
+				if(Fract!=0)
+					Str_Arr[Length - Cnt] = Fract+ zero;
+				else
+					Str_Arr[Length - Cnt] = '\0';
+			}
+			Fract_part /= 10;
+		}
+		if (Neg_flag == 0)
+			Str_Arr[Length - Cnt - 1] ='.';
+		else
+			Str_Arr[Length - Cnt] = '.';
+		Cnt++;
+		for (; Cnt < Length; Cnt++) {
+			if (Neg_flag == 0)
+				Str_Arr[Length - Cnt - 1] = Int_part % 10 + zero;
+			else
+				Str_Arr[Length - Cnt] = Int_part % 10 + zero;
+			Int_part /= 10;
+		}
+		OLED_DISPLAY_String(Str_Arr,Col_C,Row_C,Font);
+	}
+	return E_stat;
+}
+
+Bool OLED_SET_PIXEL(uint8 Page,uint8 Col)
+{
+	Bool E_stat=E_OK;
+	if(Page>63||Col>OLED_COL_SIZE-1)
+				E_stat=E_NOK;
+	else
+	{
+		uint8 Pixel=Page/8;
+		uint8 Pixel_pos=Page%8;
+		OLED_SET_CURSOR(Col,Page);
+		Image[OLED_COL_SIZE*Pixel+Col]|=(1<<Pixel_pos);
+	}
+	return E_stat;
+}
+
+void OLED_DISPLAY()
+{
+	uint8 Cnt = 0;
+	uint8 L_cnt = 0;
+	uint16 Seg_Cnt = 0;
+	OLED_send_cmd(OLED_SET_COLUMN_ADDR);
+	OLED_send_cmd(0);
+	OLED_send_cmd(127);
+	OLED_send_cmd(OLED_SET_PAGE_ADDR);
+	OLED_send_cmd(0);
+	OLED_send_cmd(7);
+	for (Cnt = 0; Cnt <= OLED_PAGE_SIZE; Cnt++) {
+		OLED_SET_CURSOR(0, Cnt);
+		I2C_GEN_START_COND();
+		I2C_WAIT();
+		I2C_WRITE_BYTE(OLEDSSD_DISPLAY_ADD);
+		I2C_WRITE_BYTE(0x40);
+		for (L_cnt = 0; L_cnt < OLED_COL_SIZE; L_cnt++) {
+			I2C_WRITE_BYTE(Image[Seg_Cnt++]);
+		}
+		I2C_GEN_STOP_COND();
+		I2C_WAIT_STOP();
+	}
+}
+
+Bool OLED_display_Image(unsigned char *Bitmap)
+{
+	Bool E_stat=E_OK;
+	if(Bitmap==NULL)
+		E_stat=E_NOK;
+	else
+	{
+		uint8 Cnt = 0;
+		uint8 L_cnt=0;
+		uint16 Seg_Cnt=0;
+		OLED_send_cmd(OLED_SET_COLUMN_ADDR);
+		OLED_send_cmd(0);
+		OLED_send_cmd(127);
+		OLED_send_cmd(OLED_SET_PAGE_ADDR);
+		OLED_send_cmd(0);
+		OLED_send_cmd(7);
+		for (Cnt = 0; Cnt <= OLED_PAGE_SIZE; Cnt++)
+		{
+			OLED_SET_CURSOR(0,Cnt);
+			I2C_GEN_START_COND();
+			I2C_WAIT();
+			I2C_WRITE_BYTE(OLEDSSD_DISPLAY_ADD);
+			I2C_WRITE_BYTE(0x40);
+			for(L_cnt=0;L_cnt<OLED_COL_SIZE;L_cnt++)
+			{
+				I2C_WRITE_BYTE(pgm_read_byte(&Bitmap[Seg_Cnt++]));
+			}
+			I2C_GEN_STOP_COND();
+			I2C_WAIT_STOP();
+		}
+	}
+	return E_stat;
+}
+
+void OLED_Draw_Line(uint8 x_0,uint8 y_0,uint8 x_1,uint8 y_1)
+{
+	uint8 steep;
+	int8_t ystep;
+	uint8_t delta_x, delta_y;
+	int16_t err;
+	steep = abs(y_1 - y_0) > abs(x_1 - x_0);
+	if (steep) {
+		OLED_SWAP(x_0, y_0);
+		OLED_SWAP(x_1, y_1);
+	}
+	if (x_0 > x_1) {
+		OLED_SWAP(x_0, x_1);
+		OLED_SWAP(y_0, y_1);
+	}
+	delta_x = x_1 - x_0;
+	delta_y = abs(y_1 - y_0);
+
+	err = delta_x / 2;//mean
+	if (y_0 < y_1)
+		ystep = 1;//go forward by one pixel
+	else
+		ystep = -1;//go backward by one pixel
+
+	for (; x_0 <= x_1; x_0++) {
+		if (steep) {
+			OLED_SET_PIXEL(y_0, x_0);
+		} else {
+			OLED_SET_PIXEL(x_0, y_0);
+		}
+		err -= delta_y;
+		if (err < 0) {
+			y_0 += ystep;
+			err += delta_x;
+		}
+	}
+}
+
+void OLED_DRAW_HORZ_LINE(uint8 Center_x,uint8 Center_y,uint8 Width)
+{
+	OLED_Draw_Line(Center_y,Center_x,Center_y,Center_x+Width-1);
+}
+
+void OLED_DRAW_Vertical_LINE(uint8 Center_x,uint8 Center_y,uint8 height)
+{
+	OLED_Draw_Line(Center_y,Center_x,Center_y+height-1,Center_x);
+}
+
+void OLED_DRAW_RECTANGLE(uint8 x,uint8 y,uint8 Width,uint8 Height)
+{
+	OLED_DRAW_HORZ_LINE(x,y,Width);
+	OLED_DRAW_HORZ_LINE(x,y+Height-1,Width);
+	OLED_DRAW_Vertical_LINE(x,y,Height);
+	OLED_DRAW_Vertical_LINE(x+Width-1,y,Height);
 }
 
